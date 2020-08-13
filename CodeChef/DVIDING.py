@@ -1,0 +1,9 @@
+n=(int)(input())
+k=(list)(map(int,input().split()))
+sum1=0
+sum2=n*(n+1)//2
+sum1=sum(k)
+if(sum(k)==sum2):
+    print("YES")
+else:
+    print("NO")
