@@ -1,0 +1,11 @@
+You have three jars that are all mislabeled. One contains peanut butter jelly beans, another grape jelly jelly beans and the third has a mix of both (not necessarily half-half mix).
+
+How many minimum jelly beans would you have to pull out to find out how to fix the labels on the jars?
+
+Labels on jars are as follows
+
+Jar 1 : Peanut butter
+Jar 2 : Grape
+Jar 3 : P.b. / Grape
+
+Solution - 1

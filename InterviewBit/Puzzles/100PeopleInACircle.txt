@@ -1,0 +1,9 @@
+100 people standing in a circle in an order 1 to 100.
+
+No.1 has a sword.
+He kills next person (i.e. no. 2) and gives sword to next to next (i.e no.3).
+All person does the same until only 1 survives.
+
+Which number survives at the last?
+
+Solution - 73

@@ -1,0 +1,61 @@
+/****************************************************
+*   Template for coding contests                    *
+*   Author    :    Sanjeev Sharma                   *
+*   Email     :    thedevelopersanjeev@gmail.com    *
+*****************************************************/
+#pragma GCC optimize ("O3")
+#pragma GCC optimize("Ofast")
+#pragma GCC optimize ("unroll-loops")
+#pragma GCC optimize("no-stack-protector")
+#pragma GCC optimize("fast-math")
+#pragma GCC target ("sse4")
+#pragma comment(linker, "/stack:200000000")
+
+#include <bits/stdc++.h>
+#include <ext/pb_ds/tree_policy.hpp>
+#include <ext/pb_ds/assoc_container.hpp>
+
+using namespace __gnu_pbds;
+using namespace std;
+
+#define deb(x) cout << #x << " is " << x << "\n";
+#define int long long
+#define mod 1000000007
+
+const double PI = 2 * acos(0.0);
+const long long INF = 1e18L + 5;
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+void solve() {
+	int n;
+	cin >> n;
+	if (n == 1) {
+		cout << 1;
+	}
+	else if (n <= 3) {
+		cout << "NO SOLUTION";
+	}
+	else if (n == 4) {
+		cout << "2 4 1 3";
+	}
+	else {
+		for (int i = 1; i <= n; i += 2) {
+			cout << i << " ";
+		}
+		for (int i = 2; i <= n; i += 2) {
+			cout << i << " ";
+		}
+	}
+}
+
+int32_t main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+// #ifndef ONLINE_JUDGE
+// 	freopen("input.txt", "r", stdin);
+// 	freopen("output.txt", "w", stdout);
+// #endif
+	solve();
+	return 0;
+}

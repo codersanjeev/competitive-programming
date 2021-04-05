@@ -1,0 +1,7 @@
+Every day, Joe arrives at the train station from work at 6pm.
+His wife leaves home in her car and meets him there at exactly 6pm, and drives him home. One day, Joe gets to the station an hour early, and starts walking home, until his wife meets him on the road. They get home 20 minutes earlier than usual.
+How long was he walking?
+Distances are unspecified. Speeds are unspecified, but constant.
+Output a number which represents the answer in minutes.
+
+Solution - 50 minutes

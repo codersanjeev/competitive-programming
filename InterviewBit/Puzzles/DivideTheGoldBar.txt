@@ -1,0 +1,5 @@
+You’ve got someone working for you for seven days and a gold bar to pay him. The gold bar is segmented into seven connected pieces.
+
+You’ve got someone working for you for seven days and a gold bar to pay him. The gold bar is segmented into seven connected pieces.
+
+Solution : 2

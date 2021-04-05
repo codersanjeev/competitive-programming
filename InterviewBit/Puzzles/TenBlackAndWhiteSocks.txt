@@ -1,0 +1,9 @@
+There are 10 black socks and 10 white socks in a drawer.Now you have to go out wearing your shoes.
+So how many maximum number of times you need to remove the sock from drawer so that you can go out?
+
+You can remove only 1 sock at a time.
+You can’t look at the drawer while removing the socks.
+
+Obviously, you can’t go outside wearing different socks!
+
+Solution - 3

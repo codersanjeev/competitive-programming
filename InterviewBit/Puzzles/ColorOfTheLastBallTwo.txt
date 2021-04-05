@@ -1,0 +1,9 @@
+You have 20 blue balls and 13 red balls in a bag.
+You put your hand in and remove 2 at a time.
+
+1. If they’re of the same color, you add a blue ball to the bag.
+2. If they’re of different colors, you add a red ball to the bag
+
+What will be the color of the last ball left in the bag?
+
+Solution : Red

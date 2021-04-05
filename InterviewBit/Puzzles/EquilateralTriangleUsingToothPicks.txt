@@ -1,0 +1,7 @@
+Create an equilateral triangle using three toothpicks.
+
+
+Now you have to add three more equilateral triangles of the same size as the original.
+What is the minimum number of toothpicks required?
+
+Solution : 3

@@ -1,0 +1,8 @@
+Two trains enter a tunnel 200 miles long, traveling at 100 mph at the same time from opposite directions.
+As soon as they enter the tunnel a supersonic bee flying at 1000 mph starts from one train and heads toward the other one.
+As soon as it reaches the other one it turns around and heads back toward the first, going back and forth between the trains until the trains collide in a fiery explosion in the middle of the tunnel.
+How far did the bee travel?
+
+Respond with a number which represents the number of miles.
+
+Solution - 1000

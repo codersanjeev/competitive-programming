@@ -1,0 +1,5 @@
+In your cellar there are three light switches in the OFF position. Each switch controls one of three light bulbs on floor above.
+You may move any of the switches but you may only go upstairs to inspect the bulbs.
+When upstairs, you cannot access the switches. What is the minimum number of times you need to go upstairs to determine the switch for each bulb?
+
+Solution - 1

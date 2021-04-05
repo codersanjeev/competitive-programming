@@ -1,0 +1,15 @@
+A man has two cubes on his desk.
+Every day he arranges both cubes so that the front faces show the current day of the month.
+What numbers are on the faces of the cubes to allow this?
+
+Sort the digits on cube 1 and sort the digits on cube 2 and append them to give the answer.
+
+For example, if the first cube had digits 1 2 3 4 5 6 and second had digits 3 1 9 8 2 4,
+the sorted digits become :
+
+First cube : 1 2 3 4 5 6
+Second cube : 1 2 3 4 8 9
+
+So, the answer would be “123456123489”
+
+Solution - 0 1 2 3 4 5 0 1 2 6 7 8

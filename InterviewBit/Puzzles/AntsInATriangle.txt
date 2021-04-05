@@ -1,0 +1,5 @@
+There are three ants on a triangle, one at each corner.
+At a given moment in time, they all set off for a corner at random.
+What is the probability that they don’t collide?
+
+Solution : 1/4

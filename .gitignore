@@ -1,0 +1,7 @@
+# ignore all output files.
+*.out
+*.class
+*.xml
+*.iml
+.vscode/*
+.history/

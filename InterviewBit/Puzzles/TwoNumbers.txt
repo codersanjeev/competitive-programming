@@ -1,0 +1,18 @@
+Ben has 2 integers. He tells sum of the integers to the person S and product of those numbers to P.Now there is this conversation between S and P.
+
+S: I don’t know what the numbers are
+
+P: Neither do I
+
+S: Now, I know what the numbers are.
+
+P: Hey, me too. 
+
+
+Assuming S and P to be very wise and good in mathematics, What are those two integers?
+
+
+Numbers are greater than 0.
+S and P are always truthful.
+
+Solution - 12

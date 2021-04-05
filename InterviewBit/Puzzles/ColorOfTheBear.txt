@@ -1,0 +1,3 @@
+A Bear has fallen from a height of 10m from ground. It reached ground in sqrt(2) seconds. Luckily it didn’t get hurt. What color is the bear?
+
+Solution : White

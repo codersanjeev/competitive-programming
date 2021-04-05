@@ -1,0 +1,8 @@
+In year 2001 on October 2, 2001, the date in MMDDYYYY format was a palindrome (same forwards as backwards).
+
+10/02/2001 -> "10022001"
+When was the last date before 2001 that this occurred on?
+
+Respond in MMDDYYYY format ( No space or ‘/’ )
+
+Solution - 08311380

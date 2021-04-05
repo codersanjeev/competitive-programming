@@ -1,0 +1,4 @@
+Consider three identical airplanes starting at the same airport. Each plane has a fuel tank that holds just enough fuel to allow the plane to travel half the distance around the world. These airplanes possess the special ability to transfer fuel between their tanks in mid-flight.
+What are the maximum around the world trips that airplane1 can make?
+
+Solution - 1

@@ -1,0 +1,7 @@
+You have 12 balls all look identical (in shape, color etc.).
+All of them have same weight except one defective ball.
+You don’t know that the defective one is heavier or lighter than other balls. You can use a two sided balance system (not the electronic one).
+
+Find the minimum no. of measures required to separate the defective ball.
+
+Solution : 3

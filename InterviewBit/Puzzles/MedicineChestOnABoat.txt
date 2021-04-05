@@ -1,0 +1,5 @@
+Alice and Bob are on separate islands. Bob is sick, and Alice has the medicine. Eve has a boat and a chest that can be locked. She is willing to transport objects between Alice and Bob, but only in the chest, and if the chest is unlocked, she will steal whatever is inside.
+
+If both Alice and Bob have a padlock and a key such that their own key only opens their own lock. Is it possible for Alice to send the medicine to Bob? If so, how many minimum trips are required? Note that Bob and Alice cannot travel in the boat. The boat going from Alice to Bob or Bob to Alice counts as 1 trip.
+
+Solution - 3

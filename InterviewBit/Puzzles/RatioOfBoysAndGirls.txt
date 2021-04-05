@@ -1,0 +1,3 @@
+In a country where everyone wants a kid with a specific gender (assuming only 2 genders), each family continues having babies till they have a kid with the expected gender. After some time, what is the proportion of boys to girls in the country? (Assuming probability of having a boy or a girl is the same)
+
+Solution - 1.00

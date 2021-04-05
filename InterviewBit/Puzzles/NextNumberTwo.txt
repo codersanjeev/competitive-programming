@@ -1,0 +1,5 @@
+Identify the next number in the sequence
+
+31, 28, 31, 30, __?
+
+Solution - 31

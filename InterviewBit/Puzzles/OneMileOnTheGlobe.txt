@@ -1,0 +1,3 @@
+How many points are there on the globe where by walking one mile south, one mile east and one mile north you reach the place where you started?
+
+Solution - Infinity

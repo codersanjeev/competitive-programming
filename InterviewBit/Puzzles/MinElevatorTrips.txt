@@ -1,0 +1,8 @@
+You are at the bottom of the elevator shaft of a 100 story building.
+You see 21 wires labelled 1 2 3 ... 21.
+The wires go up to the 100th floor where the ends are labelled A B C ... U, but you don’t know how they correspond to the ends at the bottom.
+You have a battery, a light bulb, and many small wires.
+What is the minimum number of trips required to find out the pairing between the letters and the numbers?
+Note that connecting the small wires to form a wire 21 floor long is not an option.
+
+Solution : 2
