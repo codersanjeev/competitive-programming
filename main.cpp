@@ -27,52 +27,52 @@ template <class T>
 using ordered_set = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 template <typename... T>
-void read(T &...args) {
+void read(T &...args)
+{
     ((cin >> args), ...);
 }
 
 template <typename... T>
-void write(T &&...args) {
+void write(T &&...args)
+{
     ((cout << args), ...);
 }
 
 template <typename T>
-void readContainer(T &t) {
-    for (auto &e : t) {
+void readContainer(T &t)
+{
+    for (auto &e : t)
+    {
         read(e);
     }
 }
 
 template <typename T>
-void writeContainer(T &t) {
-    for (const auto &e : t) {
+void writeContainer(T &t)
+{
+    for (const auto &e : t)
+    {
         write(e, " ");
     }
     write("\n");
 }
 
-template <class... Args>
-auto create(size_t n, Args &&...args) {
-    if constexpr (sizeof...(args) == 1) {
-        return vector(n, args...);
-    } else {
-        return vector(n, create(args...));
-    }
+void solve(int tc)
+{
 }
 
-auto speedup = []() {
+signed main()
+{
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    return nullptr;
-}();
-
-void solve(int tc) {
-}
-
-signed main() {
     int tc = 1;
     read(tc);
-    for (int curr = 1; curr <= tc; ++curr) {
+    for (int curr = 1; curr <= tc; ++curr)
+    {
         solve(curr);
     }
     return 0;
