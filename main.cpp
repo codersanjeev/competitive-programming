@@ -27,42 +27,34 @@ template <class T>
 using ordered_set = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
 template <typename... T>
-void read(T &...args)
-{
+void read(T &...args) {
     ((cin >> args), ...);
 }
 
 template <typename... T>
-void write(T &&...args)
-{
+void write(T &&...args) {
     ((cout << args), ...);
 }
 
 template <typename T>
-void readContainer(T &t)
-{
-    for (auto &e : t)
-    {
+void readContainer(T &t) {
+    for (auto &e : t) {
         read(e);
     }
 }
 
 template <typename T>
-void writeContainer(T &t)
-{
-    for (const auto &e : t)
-    {
+void writeContainer(T &t) {
+    for (const auto &e : t) {
         write(e, " ");
     }
     write("\n");
 }
 
-void solve(int tc)
-{
+void solve(int tc) {
 }
 
-signed main()
-{
+signed main() {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
@@ -71,8 +63,7 @@ signed main()
     cin.tie(nullptr);
     int tc = 1;
     read(tc);
-    for (int curr = 1; curr <= tc; ++curr)
-    {
+    for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }
     return 0;
