@@ -52,6 +52,18 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n;
+    read(n);
+    while (n != 1) {
+        write(n, " ");
+        if (n % 2 == 0) {
+            n /= 2;
+        } else {
+            n *= 3;
+            n += 1;
+        }
+    }
+    write(1);
 }
 
 signed main() {
@@ -62,7 +74,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

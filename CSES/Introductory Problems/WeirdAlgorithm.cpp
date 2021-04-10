@@ -1,55 +1,82 @@
-/****************************************************
-*   Template for coding contests                    *
-*   Author    :    Sanjeev Sharma                   *
-*   Email     :    thedevelopersanjeev@gmail.com    *
-*****************************************************/
-#pragma GCC optimize ("O3")
+#pragma GCC optimize("O3")
 #pragma GCC optimize("Ofast")
-#pragma GCC optimize ("unroll-loops")
+#pragma GCC optimize("unroll-loops")
 #pragma GCC optimize("no-stack-protector")
 #pragma GCC optimize("fast-math")
-#pragma GCC target ("sse4")
-#pragma comment(linker, "/stack:200000000")
 
 #include <bits/stdc++.h>
-#include <ext/pb_ds/tree_policy.hpp>
+
 #include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
-using namespace __gnu_pbds;
 using namespace std;
+using namespace __gnu_pbds;
 
-#define deb(x) cout << #x << " is " << x << "\n";
+#define deb(x) cout << #x << " is " << x << "\n"
 #define int long long
-#define mod 1000000007
+#define MOD 1000000007LL
+#define PI acos(-1)
 
-const double PI = 2 * acos(0.0);
-const long long INF = 1e18L + 5;
 template <typename T>
-using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+using min_heap = priority_queue<T, vector<T>, greater<T>>;
 
-void solve() {
-	int n;
-	cin >> n;
-	while (1) {
-		cout << n << " ";
-		if (n == 1)
-			break;
-		if (n % 2 == 0)
-			n /= 2;
-		else {
-			n *= 3;
-			n++;
-		}
-	}
+template <typename T>
+using max_heap = priority_queue<T>;
+
+template <class T>
+using ordered_set = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
+
+template <typename... T>
+void read(T &...args) {
+    ((cin >> args), ...);
 }
 
-int32_t main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-// #ifndef ONLINE_JUDGE
-// 	freopen("input.txt", "r", stdin);
-// 	freopen("output.txt", "w", stdout);
-// #endif
-	solve();
-	return 0;
+template <typename... T>
+void write(T &&...args) {
+    ((cout << args), ...);
+}
+
+template <typename T>
+void readContainer(T &t) {
+    for (auto &e : t) {
+        read(e);
+    }
+}
+
+template <typename T>
+void writeContainer(T &t) {
+    for (const auto &e : t) {
+        write(e, " ");
+    }
+    write("\n");
+}
+
+void solve(int tc) {
+    int n;
+    read(n);
+    while (n != 1) {
+        write(n, " ");
+        if (n % 2 == 0) {
+            n /= 2;
+        } else {
+            n *= 3;
+            n += 1;
+        }
+    }
+    write(1);
+}
+
+signed main() {
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int tc = 1;
+    // read(tc);
+    for (int curr = 1; curr <= tc; ++curr) {
+        solve(curr);
+    }
+    return 0;
 }
