@@ -52,6 +52,16 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n, sum = 0, actual = 0, ele;
+    read(n);
+    for (int i = 1; i <= n; ++i) {
+        if (i < n) {
+            read(ele);
+            actual += ele;
+        }
+        sum += i;
+    }
+    write(sum - actual, "\n");
 }
 
 signed main() {
@@ -62,7 +72,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

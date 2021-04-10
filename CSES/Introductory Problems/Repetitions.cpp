@@ -52,6 +52,16 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    string s;
+    read(s);
+    int n = s.size();
+    vector<int> ans(n, 1);
+    for (int i = 1; i < n; ++i) {
+        if (s[i] == s[i - 1]) {
+            ans[i] += ans[i - 1];
+        }
+    }
+    write(*max_element(ans.begin(), ans.end()));
 }
 
 signed main() {
@@ -62,7 +72,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

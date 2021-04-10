@@ -52,6 +52,26 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n;
+    read(n);
+    if (n <= 3) {
+        write("-1\n");
+        return;
+    }
+    int x = n;
+    if (n % 2 == 0) --x;
+    while (x >= 1) {
+        write(x, " ");
+        x -= 2;
+    }
+    write(4, " ");
+    x = 2;
+    while (x <= n) {
+        if (x != 4)
+            write(x, " ");
+        x += 2;
+    }
+    write("\n");
 }
 
 signed main() {
