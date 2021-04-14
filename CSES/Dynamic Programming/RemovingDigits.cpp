@@ -51,7 +51,25 @@ void writeContainer(T &t) {
     write("\n");
 }
 
+int maxDigit(int n) {
+    int ans = 0;
+    while (n > 0) {
+        ans = max(ans, n % 10);
+        n /= 10;
+    }
+    return ans;
+}
+
 void solve(int tc) {
+    int n;
+    read(n);
+    int ans = 0;
+    while (n > 0) {
+        int d = maxDigit(n);
+        n -= d;
+        ++ans;
+    }
+    write(ans);
 }
 
 signed main() {

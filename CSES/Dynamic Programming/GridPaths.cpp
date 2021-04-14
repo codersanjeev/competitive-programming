@@ -51,7 +51,23 @@ void writeContainer(T &t) {
     write("\n");
 }
 
+int solve(const vector<vector<char>> &grid, vector<vector<int>> &dp, int i, int j, int n) {
+    if (i < 0 || j < 0 || i >= n || j >= n || grid[i][j] == '*') return 0;
+    if (i == n - 1 && j == n - 1) return 1;
+    if (dp[i][j] != -1) return dp[i][j];
+    return dp[i][j] = (solve(grid, dp, i + 1, j, n) + solve(grid, dp, i, j + 1, n)) % MOD;
+}
+
 void solve(int tc) {
+    int n;
+    read(n);
+    vector<vector<char>> grid(n, vector<char>(n));
+    vector<vector<int>> dp(n, vector<int>(n, -1));
+    for (auto &row : grid) {
+        readContainer(row);
+    }
+    int ans = solve(grid, dp, 0, 0, n);
+    write(ans);
 }
 
 signed main() {
