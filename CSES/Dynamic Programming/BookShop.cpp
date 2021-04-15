@@ -51,7 +51,26 @@ void writeContainer(T &t) {
     write("\n");
 }
 
+vector<int> prices, pages;
+vector<vector<int>> dp;
+
 void solve(int tc) {
+    int n, x;
+    read(n, x);
+    prices.resize(n);
+    pages.resize(n);
+    readContainer(prices);
+    readContainer(pages);
+    dp = vector<vector<int>>(n + 1, vector<int>(x + 1, 0));
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 0; j <= x; ++j) {
+            dp[i][j] = dp[i - 1][j];
+            if (j - prices[i - 1] >= 0) {
+                dp[i][j] = max(dp[i][j], dp[i - 1][j - prices[i - 1]] + pages[i - 1]);
+            }
+        }
+    }
+    write(dp[n][x]);
 }
 
 signed main() {
@@ -62,7 +81,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }
