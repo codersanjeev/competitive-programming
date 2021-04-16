@@ -51,7 +51,27 @@ void writeContainer(T &t) {
     write("\n");
 }
 
+vector<vector<int>> dp;
+
+int solve(int a, int b) {
+    if (a == b) return 0;
+    int ans = 1e18;
+    if (dp[a][b] != -1) return dp[a][b];
+    for (int k = 1; k < b; ++k) {
+        ans = min(ans, 1 + solve(a, k) + solve(a, b - k));
+    }
+    for (int k = 1; k < a; ++k) {
+        ans = min(ans, 1 + solve(k, b) + solve(a - k, b));
+    }
+    return dp[a][b] = ans;
+}
+
 void solve(int tc) {
+    int a, b;
+    read(a, b);
+    dp = vector<vector<int>>(a + 1, vector<int>(b + 1, -1));
+    int ans = solve(a, b);
+    write(ans);
 }
 
 signed main() {
@@ -62,7 +82,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

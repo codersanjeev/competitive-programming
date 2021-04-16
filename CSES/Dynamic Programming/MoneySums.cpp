@@ -52,6 +52,22 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n;
+    read(n);
+    vector<int> arr(n);
+    readContainer(arr);
+    set<int> ans;
+    ans.insert(arr[0]);
+    for (int i = 1; i < n; ++i) {
+        set<int> temp = ans;
+        for (const auto &ele : ans) {
+            temp.insert(ele + arr[i]);
+        }
+        temp.insert(arr[i]);
+        ans = temp;
+    }
+    write(ans.size(), "\n");
+    writeContainer(ans);
 }
 
 signed main() {
@@ -62,7 +78,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

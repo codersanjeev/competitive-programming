@@ -52,6 +52,38 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n, m;
+    cin >> n >> m;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    vector<vector<int>> dp(n, vector<int>(m + 1, 0LL));
+    if (arr[0] == 0) {
+        fill(dp[0].begin(), dp[0].end(), 1LL);
+    } else {
+        dp[0][arr[0]] = 1LL;
+    }
+    for (int i = 1; i < n; i++) {
+        if (arr[i] == 0) {
+            for (int j = 1; j <= m; j++) {
+                for (int k : {j - 1, j, j + 1}) {
+                    if (k >= 1 && k <= m) {
+                        dp[i][j] = (dp[i][j] + dp[i - 1][k]) % MOD;
+                    }
+                }
+            }
+        } else {
+            int x = arr[i];
+            for (int k : {x - 1, x, x + 1}) {
+                if (k >= 1 && k <= m)
+                    dp[i][x] = (dp[i][x] + dp[i - 1][k]) % MOD;
+            }
+        }
+    }
+    int ans = 0LL;
+    for (int j = 1; j <= m; j++)
+        ans = (ans + dp[n - 1][j]) % MOD;
+    cout << ans;
 }
 
 signed main() {
@@ -62,7 +94,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }
