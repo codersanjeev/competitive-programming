@@ -52,19 +52,13 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
-    int n, k;
-    read(n, k);
-    vector<int> arr(n);
-    readContainer(arr);
-    vector<int> dp(n, 1e18);
-    dp[0] = 0;
-    for (int i = 0; i < n; ++i) {
-        for (int j = 1; j <= k; ++j) {
-            if (i - j < 0) break;
-            dp[i] = min(dp[i], dp[i - j] + abs(arr[i] - arr[i - j]));
-        }
+    int a, b, c;
+    read(a, b, c);
+    if ((a * a) + (b * b) < (c * c)) {
+        write("Yes\n");
+    } else {
+        write("No\n");
     }
-    write(dp[n - 1], "\n");
 }
 
 signed main() {
