@@ -51,13 +51,6 @@ void writeContainer(T &t) {
     write("\n");
 }
 
-int solve(const vector<pair<int, int>> &arr, int index, int n, int W, vector<vector<int>> &dp) {
-    if (index == n) return 0;
-    if (dp[index][W] != -1) return dp[index][W];
-    if (arr[index].first > W) return dp[index][W] = solve(arr, index + 1, n, W, dp);
-    return dp[index][W] = max(arr[index].second + solve(arr, index + 1, n, W - arr[index].first, dp), solve(arr, index + 1, n, W, dp));
-}
-
 void solve(int tc) {
     int n, w;
     read(n, w);
@@ -65,8 +58,24 @@ void solve(int tc) {
     for (int i = 0; i < n; ++i) {
         read(arr[i].first, arr[i].second);
     }
-    vector<vector<int>> dp(n, vector<int>(1e5 + 1, -1));
-    int ans = solve(arr, 0, n, w, dp);
+    vector<vector<int>> dp(n + 1, vector<int>(n * 1005LL, -1));
+    for (int i = 0; i < n + 1; ++i) {
+        for (int j = 0; j < n * 1005LL; ++j) {
+            if (i == 0 && j == 0) {
+                dp[i][j] = 0;
+            } else if (i == 0) {
+                dp[i][j] = (long long)1e18;
+            } else if (arr[i - 1].second <= j) {
+                dp[i][j] = min(arr[i - 1].first + dp[i - 1][j - arr[i - 1].second], dp[i - 1][j]);
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+    int ans = 0;
+    for (int j = 0; j < n * 1005LL; ++j) {
+        if (dp[n][j] <= w) ans = j;
+    }
     write(ans, "\n");
 }
 
