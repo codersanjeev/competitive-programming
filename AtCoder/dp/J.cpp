@@ -51,10 +51,14 @@ void writeContainer(T &t) {
     write("\n");
 }
 
-int solve(const vector<int> &arr, int i, int j, vector<vector<int>> &dp) {
-    if (dp[i][j] != -1) return dp[i][j];
-    if (i == j) return dp[i][j] = arr[i];
-    return dp[i][j] = max(arr[i] - solve(arr, i + 1, j, dp), arr[j] - solve(arr, i, j - 1, dp));
+double dp[301][301][301];
+
+double solve(int one, int two, int three, int n) {
+    if ((one < 0 || two < 0 || three < 0) || (one == 0 && two == 0 && three == 0))
+        return 0;
+    if (dp[one][two][three] > 0)
+        return dp[one][two][three];
+    return dp[one][two][three] = (n + one * solve(one - 1, two, three, n) + two * solve(one + 1, two - 1, three, n) + three * solve(one, two + 1, three - 1, n)) / (one + two + three);
 }
 
 void solve(int tc) {
@@ -62,20 +66,30 @@ void solve(int tc) {
     read(n);
     vector<int> arr(n);
     readContainer(arr);
-    vector<vector<int>> dp(n, vector<int>(n, -1));
-    int ans = solve(arr, 0, n - 1, dp);
-    write(ans, "\n");
+    int one = 0, two = 0, three = 0;
+    for (const auto &ele : arr) {
+        if (ele == 1) {
+            one++;
+        } else if (ele == 2) {
+            two++;
+        } else {
+            three++;
+        }
+    }
+    memset(dp, -1.0, sizeof(dp));
+    double ans = solve(one, two, three, n);
+    write(fixed, setprecision(14), ans, "\n");
 }
 
 signed main() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

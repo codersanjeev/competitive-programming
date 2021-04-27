@@ -51,31 +51,42 @@ void writeContainer(T &t) {
     write("\n");
 }
 
-int solve(const vector<int> &arr, int i, int j, vector<vector<int>> &dp) {
-    if (dp[i][j] != -1) return dp[i][j];
-    if (i == j) return dp[i][j] = arr[i];
-    return dp[i][j] = max(arr[i] - solve(arr, i + 1, j, dp), arr[j] - solve(arr, i, j - 1, dp));
+int longestPath(vector<int> adj[], int u, vector<int> &dp) {
+    if (dp[u] != -1) return dp[u];
+    int ans = 0;
+    for (const auto &v : adj[u]) {
+        ans = max(ans, 1 + longestPath(adj, v, dp));
+    }
+    return dp[u] = ans;
 }
 
 void solve(int tc) {
-    int n;
-    read(n);
-    vector<int> arr(n);
-    readContainer(arr);
-    vector<vector<int>> dp(n, vector<int>(n, -1));
-    int ans = solve(arr, 0, n - 1, dp);
+    int n, m, u, v;
+    read(n, m);
+    vector<int> adj[n];
+    while (m--) {
+        read(u, v);
+        --u;
+        --v;
+        adj[u].push_back(v);
+    }
+    int ans = 0;
+    vector<int> dp(n, -1);
+    for (int i = 0; i < n; ++i) {
+        ans = max(ans, longestPath(adj, i, dp));
+    }
     write(ans, "\n");
 }
 
 signed main() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

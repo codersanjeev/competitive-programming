@@ -51,31 +51,35 @@ void writeContainer(T &t) {
     write("\n");
 }
 
-int solve(const vector<int> &arr, int i, int j, vector<vector<int>> &dp) {
-    if (dp[i][j] != -1) return dp[i][j];
-    if (i == j) return dp[i][j] = arr[i];
-    return dp[i][j] = max(arr[i] - solve(arr, i + 1, j, dp), arr[j] - solve(arr, i, j - 1, dp));
+string solve(const vector<int> &arr, int k) {
+    vector<bool> dp(k + 1, false);
+    for (int i = 1; i <= k; ++i) {
+        for (const auto &ele : arr) {
+            if (i - ele >= 0 && dp[i - ele] == false) {
+                dp[i] = true;
+            }
+        }
+    }
+    return dp[k] ? "First" : "Second";
 }
 
 void solve(int tc) {
-    int n;
-    read(n);
+    int n, k;
+    read(n, k);
     vector<int> arr(n);
     readContainer(arr);
-    vector<vector<int>> dp(n, vector<int>(n, -1));
-    int ans = solve(arr, 0, n - 1, dp);
-    write(ans, "\n");
+    write(solve(arr, k), "\n");
 }
 
 signed main() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

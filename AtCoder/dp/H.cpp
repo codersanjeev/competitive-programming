@@ -51,31 +51,39 @@ void writeContainer(T &t) {
     write("\n");
 }
 
-int solve(const vector<int> &arr, int i, int j, vector<vector<int>> &dp) {
-    if (dp[i][j] != -1) return dp[i][j];
-    if (i == j) return dp[i][j] = arr[i];
-    return dp[i][j] = max(arr[i] - solve(arr, i + 1, j, dp), arr[j] - solve(arr, i, j - 1, dp));
-}
-
 void solve(int tc) {
-    int n;
-    read(n);
-    vector<int> arr(n);
-    readContainer(arr);
-    vector<vector<int>> dp(n, vector<int>(n, -1));
-    int ans = solve(arr, 0, n - 1, dp);
-    write(ans, "\n");
+    int n, m;
+    read(n, m);
+    vector<string> arr(n);
+    for (auto &ele : arr) {
+        read(ele);
+    }
+    vector<vector<int>> dp(n, vector<int>(m, 0));
+    dp[0][0] = 1;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            if (arr[i][j] == '.') {
+                if (i - 1 >= 0) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
+                }
+                if (j - 1 >= 0) {
+                    dp[i][j] = (dp[i][j] + dp[i][j - 1]) % MOD;
+                }
+            }
+        }
+    }
+    write(dp[n - 1][m - 1], "\n");
 }
 
 signed main() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }

@@ -51,31 +51,46 @@ void writeContainer(T &t) {
     write("\n");
 }
 
-int solve(const vector<int> &arr, int i, int j, vector<vector<int>> &dp) {
-    if (dp[i][j] != -1) return dp[i][j];
-    if (i == j) return dp[i][j] = arr[i];
-    return dp[i][j] = max(arr[i] - solve(arr, i + 1, j, dp), arr[j] - solve(arr, i, j - 1, dp));
+double solve(int i, int j, vector<double> arr, vector<vector<double>> &dp) {
+    if (dp[i][j] > -1) {
+        return dp[i][j];
+    }
+    if (j == 0) return 1;
+    if (i == 0) return 0;
+    dp[i][j] = (solve(i - 1, j - 1, arr, dp) * arr[i]) + (solve(i - 1, j, arr, dp) * (1 - arr[i]));
+    return dp[i][j];
 }
 
 void solve(int tc) {
     int n;
     read(n);
-    vector<int> arr(n);
+    vector<double> arr(n);
     readContainer(arr);
-    vector<vector<int>> dp(n, vector<int>(n, -1));
-    int ans = solve(arr, 0, n - 1, dp);
-    write(ans, "\n");
+    vector<vector<double>> dp(n + 1, vector<double>(n + 1, 0));
+    dp[0][0] = 1;
+    for (int i = 1; i <= n; ++i) {
+        for (int j = 0; j <= i; ++j) {
+            if (j == 0) {
+                dp[i][j] = dp[i - 1][j] * (1 - arr[i - 1]);
+            } else {
+                dp[i][j] = (dp[i - 1][j] * (1 - arr[i - 1])) + (dp[i - 1][j - 1] * arr[i - 1]);
+            }
+        }
+    }
+    double ans = 0;
+    for (int j = (n + 1) / 2; j <= n; ++j) ans += dp[n][j];
+    write(fixed, setprecision(16), ans, "\n");
 }
 
 signed main() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }
