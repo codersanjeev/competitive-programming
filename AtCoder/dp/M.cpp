@@ -52,17 +52,37 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n, k;
+    read(n, k);
+    vector<int> a(n);
+    readContainer(a);
+    // dp[i][j] = number of ways to distribute j candies to [0, i] children
+    // answer = dp[n - 1][k]
+    vector<vector<int>> dp(n, vector<int>(k + 1, 0));
+    for (int j = 0; j <= k; j++) {
+        dp[0][j] = j <= a[0] ? 1 : 0;
+    }
+    for (int i = 1; i < n; ++i) {
+        for (int j = 0; j <= k; ++j) {
+            int ans = 0;
+            ans = (ans + (j - 1 >= 0 ? dp[i][j - 1] : 0)) % MOD;
+            ans = (ans + dp[i - 1][j]) % MOD;
+            ans = (ans - (j - 1 - a[i] >= 0 ? dp[i - 1][j - 1 - a[i]] : 0) + MOD) % MOD;
+            dp[i][j] = ans;
+        }
+    }
+    write(dp[n - 1][k], "\n");
 }
 
 signed main() {
-#ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-#endif
+    // #ifndef ONLINE_JUDGE
+    //     freopen("input.txt", "r", stdin);
+    //     freopen("output.txt", "w", stdout);
+    // #endif
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    read(tc);
+    // read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }
