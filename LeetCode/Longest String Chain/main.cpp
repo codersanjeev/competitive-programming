@@ -1,41 +1,26 @@
 class Solution {
-  public:
+   private:
+    bool isPredecessor(const string &x, const string &y) {
+        if (y.size() - x.size() != 1) return false;
+        if (y.substr(1) == x || y.substr(0, x.size()) == x) return true;
+        for (int i = 0; i < y.size() - 1; ++i) {
+            if (y.substr(0, i) + y.substr(i + 1) == x) return true;
+        }
+        return false;
+    }
 
-	// x is pre of y?
-	bool isPredecessor(const string &x, const string &y) {
-		int n = x.size(), m = y.size();
-		if (m - n != 1) {
-			return false;
-		}
-		if (y.substr(1) == x || y.substr(0, n) == x) {
-			return true;
-		}
-		for (int i = 0; i < m - 1; i++) {
-			string curr = y.substr(0, i) + y.substr(i + 1);
-			if (curr == x) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	int longestStrChain(vector<string> &words) {
-		int n = words.size();
-		if (n < 2) {
-			return n;
-		}
-		sort(words.begin(), words.end(), [](const string & x, const string & y) {
-			int a = x.size(), b = y.size();
-			return a < b;
-		});
-		vector<int> dp(n, 1);
-		for (int i = 1; i < n; i++) {
-			for (int j = 0; j < i; j++) {
-				if (isPredecessor(words[j], words[i])) {
-					dp[i] = max(dp[i], 1 + dp[j]);
-				}
-			}
-		}
-		return *max_element(dp.begin(), dp.end());
-	}
+   public:
+    int longestStrChain(vector<string> &words) {
+        if (words.size() < 2) return words.size();
+        sort(words.begin(), words.end(), [](const string &x, const string &y) {
+            return x.size() < y.size();
+        });
+        vector<int> dp(words.size(), 1);
+        for (int i = 1; i < words.size(); ++i) {
+            for (int j = 0; j < i; ++j) {
+                if (isPredecessor(words[j], words[i])) dp[i] = max(dp[i], 1 + dp[j]);
+            }
+        }
+        return *max_element(dp.begin(), dp.end());
+    }
 };
