@@ -1,10 +1,11 @@
 class Solution {
-  public:
-	string toLowerCase(string s) {
-		string ans = "";
-		for (const auto &ele : s) {
-			ans += tolower(ele);
-		}
-		return ans;
-	}
+   public:
+    string toLowerCase(string s) {
+        for (auto &ele : s) {
+            if (ele >= 'A' && ele <= 'Z') {
+                ele = 'a' + (ele - 'A');
+            }
+        }
+        return s;
+    }
 };
