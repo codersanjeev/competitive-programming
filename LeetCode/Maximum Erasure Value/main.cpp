@@ -1,23 +1,18 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
    public:
-    int maximumUniqueSubarray(vector<int>& nums) {
-        int n = nums.size(), i = 0, j = 0, ans = 0, fans = 0;
-        set<int> st;
-        while (i < n && j < n) {
-            if (st.count(nums[j]) == 0) {
-                ans += nums[j];
-                fans = max(fans, ans);
-                st.insert(nums[j]);
-                j++;
-            } else {
-                ans -= nums[i];
-                st.erase(nums[i]);
-                i++;
+    int maximumUniqueSubarray(vector<int> &nums) {
+        int curr = 0, ans = 0, i = 0;
+        vector<bool> seen(10001, false);
+        for (int j = 0; j < nums.size(); ++j) {
+            while (seen[nums[j]]) {
+                seen[nums[i]] = false;
+                curr -= nums[i];
+                ++i;
             }
+            seen[nums[j]] = true;
+            curr += nums[j];
+            ans = max(ans, curr);
         }
-        return fans;
+        return ans;
     }
 };
