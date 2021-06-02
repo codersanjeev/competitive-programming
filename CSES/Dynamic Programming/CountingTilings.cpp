@@ -52,6 +52,8 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n, m;
+    read(n, m);
 }
 
 signed main() {

@@ -51,7 +51,37 @@ void writeContainer(T &t) {
     write("\n");
 }
 
+string s;
+vector<int> dx = {0, 0, 1, -1};
+vector<int> dy = {1, -1, 0, 0};
+vector<vector<bool>> visited(7, vector<bool>(7, false));
+
+int solve(int i, int j, int idx) {
+    if (i == 6 && j == 6) return 1;
+    if (i < 0 || j < 0 || i >= 7 || j >= 7 || visited[i][j] || idx >= 48) return 0;
+    visited[i][j] = true;
+    int ans = 0;
+    if (s[idx] == 'L') {
+        ans += solve(i, j - 1, idx + 1);
+    } else if (s[idx] == 'R') {
+        ans += solve(i, j + 1, idx + 1);
+    } else if (s[idx] == 'U') {
+        ans += solve(i - 1, j, idx + 1);
+    } else if (s[idx] == 'D') {
+        ans += solve(i - 1, j, idx + 1);
+    } else {
+        for (int k = 0; k < 4; ++k) {
+            ans += solve(i + dx[k], j + dy[k], idx + 1);
+        }
+    }
+    visited[i][j] = false;
+    return ans;
+}
+
 void solve(int tc) {
+    read(s);
+    int ans = solve(0, 0, 0);
+    write(ans);
 }
 
 signed main() {

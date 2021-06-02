@@ -52,6 +52,9 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n, x;
+    vector<int> w(n);
+    readContainer(w);
 }
 
 signed main() {

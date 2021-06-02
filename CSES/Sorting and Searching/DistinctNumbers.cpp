@@ -52,6 +52,14 @@ void writeContainer(T &t) {
 }
 
 void solve(int tc) {
+    int n, ele;
+    read(n);
+    set<int> ans;
+    while (n--) {
+        read(ele);
+        ans.insert(ele);
+    }
+    write(ans.size());
 }
 
 signed main() {
