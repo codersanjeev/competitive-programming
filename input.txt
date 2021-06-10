@@ -1,0 +1,6 @@
+Company  | Position
+Duration | Location
+- About
+- Contribution
+- Impact
+- Tech Stack
