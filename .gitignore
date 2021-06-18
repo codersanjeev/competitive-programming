@@ -3,5 +3,4 @@
 *.class
 *.xml
 *.iml
-.vscode/*
 .history/
