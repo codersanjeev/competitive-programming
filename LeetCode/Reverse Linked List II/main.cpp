@@ -1,29 +1,19 @@
 class Solution {
    public:
-    ListNode* reverseBetween(ListNode* head, int m, int n) {
-        ListNode* curr = head;
-        ListNode* prev = nullptr;
-        int k = 1;
-        while (k < m) {
-            prev = curr;
-            curr = curr->next;
-            k++;
+    ListNode* reverseBetween(ListNode* head, int left, int right) {
+        ListNode* dummyNode = new ListNode();
+        dummyNode->next = head;
+        ListNode *previousNode = dummyNode, *currentNode = dummyNode->next;
+        for (int i = 1; i < left; ++i) {
+            currentNode = currentNode->next;
+            previousNode = previousNode->next;
         }
-        ListNode* joinOne = prev;
-        ListNode* joinTwo = curr;
-        while (k <= n) {
-            ListNode* next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-            k++;
+        for (int i = 0; i < right - left; ++i) {
+            ListNode* temporaryNode = currentNode->next;
+            currentNode->next = temporaryNode->next;
+            temporaryNode->next = previousNode->next;
+            previousNode->next = temporaryNode;
         }
-        if (joinOne != nullptr) {
-            joinOne->next = prev;
-        } else {
-            head = prev;
-        }
-        joinTwo->next = curr;
-        return head;
+        return dummyNode->next;
     }
 };
