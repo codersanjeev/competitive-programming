@@ -9,11 +9,7 @@ class DSU {
     }
 
     int find(int u) {
-        if (parent[u] == -1) {
-            return u;
-        } else {
-            return parent[u] = find(parent[u]);
-        }
+        return parent[u] == -1 ? u : parent[u] = find(parent[u]);
     }
 
     bool merge(int u, int v) {
@@ -38,7 +34,7 @@ class Solution {
     vector<int> findRedundantConnection(vector<vector<int>> &edges) {
         DSU *dsu = new DSU(edges.size());
         for (int i = 0; i < edges.size(); ++i) {
-            if (dsu->merge(edges[i][0] - 1, edges[i][1] - 1) == false) {
+            if (!dsu->merge(edges[i][0] - 1, edges[i][1] - 1)) {
                 return edges[i];
             }
         }
