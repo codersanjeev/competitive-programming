@@ -1,5 +1,5 @@
 private func readLn() -> String {
-	return readLine()!
+	return readLine() ?? ""
 }
 
 private func readLns() -> [String] {

@@ -1,4 +1,4 @@
-private fun readLn() = readLine()!!
+private fun readLn() = readLine() ?: ""
 private fun readLns() = readLn().split(" ")
 private fun readInt() = readLn().toInt()
 private fun readInts() = readLns().map { it.toInt() }
