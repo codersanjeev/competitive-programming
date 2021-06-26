@@ -58,7 +58,7 @@ signed main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int tc = 1;
-    // read(tc);
+    read(tc);
     for (int curr = 1; curr <= tc; ++curr) {
         solve(curr);
     }
