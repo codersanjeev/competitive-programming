@@ -51,8 +51,7 @@ void writeContainer(T &t) {
     write("\n");
 }
 
-void solve(int tc) {
-}
+void solve(int tc) {}
 
 signed main() {
     ios::sync_with_stdio(false);
