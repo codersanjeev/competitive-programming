@@ -1,81 +1,22 @@
-#pragma GCC optimize("O3")
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize("unroll-loops")
-#pragma GCC optimize("no-stack-protector")
-#pragma GCC optimize("fast-math")
-
 #include <bits/stdc++.h>
-
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
 using namespace std;
-using namespace __gnu_pbds;
 
-#define deb(x) cout << #x << " is " << x << "\n"
-#define int long long
-#define MOD 1000000007LL
-#define PI acos(-1)
-
-template <typename T>
-using min_heap = priority_queue<T, vector<T>, greater<T>>;
-
-template <typename T>
-using max_heap = priority_queue<T>;
-
-template <class T>
-using ordered_set = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-template <typename... T>
-void read(T &...args) {
-    ((cin >> args), ...);
-}
-
-template <typename... T>
-void write(T &&...args) {
-    ((cout << args), ...);
-}
-
-template <typename T>
-void readContainer(T &t) {
-    for (auto &e : t) {
-        read(e);
-    }
-}
-
-template <typename T>
-void writeContainer(T &t) {
-    for (const auto &e : t) {
-        write(e, " ");
-    }
-    write("\n");
-}
-
-void solve(int tc) {
+int main() {
     int n;
-    read(n);
-    vector<int> arr(n);
-    readContainer(arr);
-    vector<int> dp(n);
-    dp[0] = 0;
-    dp[1] = abs(arr[1] - arr[0]);
+    cin >> n;
+    vector<int> heights(n);
+    for (auto &ele : heights) cin >> ele;
+    int x = 0, y = abs(heights[1] - heights[0]);
+    // vector<int> dp(n, 0);
+    // dp[1] = abs(heights[1] - heights[0]);
     for (int i = 2; i < n; ++i) {
-        dp[i] = min(dp[i - 1] + abs(arr[i] - arr[i - 1]), dp[i - 2] + abs(arr[i] - arr[i - 2]));
+        int a = x + abs(heights[i] - heights[i - 2]);
+        int b = y + abs(heights[i] - heights[i - 1]);
+        x = y;
+        y = min(a, b);
+        // dp[i] = min(dp[i - 1] + abs(heights[i] - heights[i - 1]), dp[i - 2] + abs(heights[i] - heights[i - 2]));
     }
-    write(dp[n - 1], "\n");
-}
-
-signed main() {
-    // #ifndef ONLINE_JUDGE
-    //     freopen("input.txt", "r", stdin);
-    //     freopen("output.txt", "w", stdout);
-    // #endif
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int tc = 1;
-    // read(tc);
-    for (int curr = 1; curr <= tc; ++curr) {
-        solve(curr);
-    }
+    // cout << dp[n - 1];
+    cout << y;
     return 0;
 }
