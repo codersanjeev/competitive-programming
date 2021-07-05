@@ -1,91 +1,28 @@
-#pragma GCC optimize("O3")
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize("unroll-loops")
-#pragma GCC optimize("no-stack-protector")
-#pragma GCC optimize("fast-math")
-
 #include <bits/stdc++.h>
-
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
 using namespace std;
-using namespace __gnu_pbds;
 
-#define deb(x) cout << #x << " is " << x << "\n"
 #define int long long
-#define MOD 1000000007LL
-#define PI acos(-1)
+const int mod = 1e9 + 7;
 
-template <typename T>
-using min_heap = priority_queue<T, vector<T>, greater<T>>;
-
-template <typename T>
-using max_heap = priority_queue<T>;
-
-template <class T>
-using ordered_set = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-template <typename... T>
-void read(T &...args) {
-    ((cin >> args), ...);
-}
-
-template <typename... T>
-void write(T &&...args) {
-    ((cout << args), ...);
-}
-
-template <typename T>
-void readContainer(T &t) {
-    for (auto &e : t) {
-        read(e);
+signed main() {
+    int H, W;
+    cin >> H >> W;
+    vector<vector<char>> grid(H, vector<char>(W));
+    for (int i = 0; i < H; ++i) {
+        for (int j = 0; j < W; ++j) {
+            cin >> grid[i][j];
+        }
     }
-}
-
-template <typename T>
-void writeContainer(T &t) {
-    for (const auto &e : t) {
-        write(e, " ");
-    }
-    write("\n");
-}
-
-void solve(int tc) {
-    int n, m;
-    read(n, m);
-    vector<string> arr(n);
-    for (auto &ele : arr) {
-        read(ele);
-    }
-    vector<vector<int>> dp(n, vector<int>(m, 0));
-    dp[0][0] = 1;
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m; ++j) {
-            if (arr[i][j] == '.') {
-                if (i - 1 >= 0) {
-                    dp[i][j] = (dp[i][j] + dp[i - 1][j]) % MOD;
-                }
-                if (j - 1 >= 0) {
-                    dp[i][j] = (dp[i][j] + dp[i][j - 1]) % MOD;
-                }
+    vector<vector<int>> dp(H, vector<int>(W, 0));
+    dp[H - 1][W - 1] = 1;
+    for (int i = H - 1; i >= 0; --i) {
+        for (int j = W - 1; j >= 0; --j) {
+            if (grid[i][j] == '.') {
+                if (i + 1 < H) dp[i][j] = (dp[i][j] + dp[i + 1][j]) % mod;
+                if (j + 1 < W) dp[i][j] = (dp[i][j] + dp[i][j + 1]) % mod;
             }
         }
     }
-    write(dp[n - 1][m - 1], "\n");
-}
-
-signed main() {
-    // #ifndef ONLINE_JUDGE
-    //     freopen("input.txt", "r", stdin);
-    //     freopen("output.txt", "w", stdout);
-    // #endif
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int tc = 1;
-    // read(tc);
-    for (int curr = 1; curr <= tc; ++curr) {
-        solve(curr);
-    }
+    cout << dp[0][0];
     return 0;
 }
