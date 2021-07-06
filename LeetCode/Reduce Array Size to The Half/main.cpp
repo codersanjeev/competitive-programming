@@ -1,24 +1,22 @@
 class Solution {
-  public:
-	int minSetSize(vector<int>& arr) {
-		map<int, int> mp;
-		int n = arr.size();
-		for (const auto &ele : arr) {
-			mp[ele]++;
-		}
-		int ans = 0;
-		vector<pair<int, int>> freq;
-		for (const auto &ele : mp) {
-			freq.push_back({ele.second, ele.first});
-		}
-		sort(freq.begin(), freq.end());
-		reverse(freq.begin(), freq.end());
-		int curr = n, idx = 0;
-		while (curr > n / 2) {
-			curr -= freq[idx].first;
-			ans++;
-			idx++;
-		}
-		return ans;
-	}
+   public:
+    int minSetSize(vector<int> &arr) {
+        unordered_map<int, int> mp;
+        for (const auto &ele : arr) {
+            mp[ele]++;
+        }
+        int ans = 0;
+        vector<pair<int, int>> freq;
+        for (const auto &ele : mp) {
+            freq.push_back(make_pair(ele.second, ele.first));
+        }
+        sort(freq.begin(), freq.end(), greater<pair<int, int>>());
+        int curr = arr.size(), index = 0;
+        while (curr > arr.size() / 2) {
+            curr -= freq[index].first;
+            ans++;
+            index++;
+        }
+        return ans;
+    }
 };

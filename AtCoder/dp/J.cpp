@@ -1,97 +1,40 @@
-#pragma GCC optimize("O3")
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize("unroll-loops")
-#pragma GCC optimize("no-stack-protector")
-#pragma GCC optimize("fast-math")
-
 #include <bits/stdc++.h>
-
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-
 using namespace std;
-using namespace __gnu_pbds;
 
-#define deb(x) cout << #x << " is " << x << "\n"
-#define int long long
-#define MOD 1000000007LL
-#define PI acos(-1)
-
-template <typename T>
-using min_heap = priority_queue<T, vector<T>, greater<T>>;
-
-template <typename T>
-using max_heap = priority_queue<T>;
-
-template <class T>
-using ordered_set = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-template <typename... T>
-void read(T &...args) {
-    ((cin >> args), ...);
-}
-
-template <typename... T>
-void write(T &&...args) {
-    ((cout << args), ...);
-}
-
-template <typename T>
-void readContainer(T &t) {
-    for (auto &e : t) {
-        read(e);
+int main() {
+    int n, ele, x = 0, y = 0, z = 0;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cin >> ele;
+        if (ele == 1)
+            ++x;
+        else if (ele == 2)
+            ++y;
+        else
+            ++z;
     }
-}
-
-template <typename T>
-void writeContainer(T &t) {
-    for (const auto &e : t) {
-        write(e, " ");
-    }
-    write("\n");
-}
-
-double dp[301][301][301];
-
-double solve(int one, int two, int three, int n) {
-    if ((one < 0 || two < 0 || three < 0) || (one == 0 && two == 0 && three == 0))
-        return 0;
-    if (dp[one][two][three] > 0)
-        return dp[one][two][three];
-    return dp[one][two][three] = (n + one * solve(one - 1, two, three, n) + two * solve(one + 1, two - 1, three, n) + three * solve(one, two + 1, three - 1, n)) / (one + two + three);
-}
-
-void solve(int tc) {
-    int n;
-    read(n);
-    vector<int> arr(n);
-    readContainer(arr);
-    int one = 0, two = 0, three = 0;
-    for (const auto &ele : arr) {
-        if (ele == 1) {
-            one++;
-        } else if (ele == 2) {
-            two++;
-        } else {
-            three++;
+    double dp[301][301][301];
+    memset(dp, 0, sizeof(dp));
+    for (int three = 0; three <= n; three++) {
+        for (int two = 0; two <= n; two++) {
+            for (int one = 0; one <= n; one++) {
+                int zero = n - three - two - one;
+                if (zero == n || one + two + three > n)
+                    continue;
+                double ans = 1;
+                //choose 3 sushi
+                if (three > 0)
+                    ans += (1.0 * three / n) * dp[three - 1][two + 1][one];
+                //choose 2 sushi
+                if (two > 0)
+                    ans += (1.0 * two / n) * dp[three][two - 1][one + 1];
+                //choose 1 sushi
+                if (one > 0)
+                    ans += (1.0 * one / n) * dp[three][two][one - 1];
+                dp[three][two][one] = ans / (1 - 1.0 * zero / n);
+            }
         }
     }
-    memset(dp, -1.0, sizeof(dp));
-    double ans = solve(one, two, three, n);
-    write(fixed, setprecision(14), ans, "\n");
-}
-
-signed main() {
-    // #ifndef ONLINE_JUDGE
-    //     freopen("input.txt", "r", stdin);
-    //     freopen("output.txt", "w", stdout);
-    // #endif
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    int tc = 1;
-    // read(tc);
-    for (int curr = 1; curr <= tc; ++curr) {
-        solve(curr);
-    }
+    cout << fixed << setprecision(16) << dp[z][y][x];
     return 0;
 }
